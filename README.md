@@ -1,5 +1,4 @@
 # Ko-BART
-# KoBART-translation
 
 ## Install KoBART
 ```

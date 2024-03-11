@@ -1,10 +1,9 @@
 # Ko-BART
 
 ## Install KoBART
-```
-hugging_face = [heegyu/kobart-text-style-transfer](https://huggingface.co/heegyu/kobart-text-style-transfer )
+
+- [heegyu/kobart-text-style-transfer](https://huggingface.co/heegyu/kobart-text-style-transfer)
 : kobart 모델에 Korean Smilestyle Dataset을 파인튜닝한 한국어 텍스트 스타일 변환 모델
-```
 
 ## Requirements
 ```

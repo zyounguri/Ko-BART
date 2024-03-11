@@ -21,9 +21,11 @@ streamlit==0.72.0
 ## How to Train
 - KoBART translation fine-tuning
 ```
-./dataset 다운로드
+./dataset json포맷 데이터 다운로드
 ./_data_pre.py 데이터 정제
-./
+./custom_dataset.py 실행
+./train/train.py
+./validation/test.py
 
 ```
 ## Folder

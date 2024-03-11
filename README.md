@@ -22,9 +22,20 @@ streamlit==0.72.0
 ## How to Train
 - KoBART translation fine-tuning
 ```
-./prepare.sh
-pip install -r requirements.txt
-python train.py  --gradient_clip_val 1.0 --max_epochs 50 --default_root_dir logs  --gpus 1 --batch_size 4
+./dataset 다운로드
+./_data_pre.py 데이터 정제
+./
+
+```
+## Folder
+```
+AI Folder 
+ㄴ config.py
+ㄴ train.py
+ㄴ saved_model/
+   ㄴ (saved_model_weights_files)
+ㄴ dataset/
+   ㄴ data.tsv
 ```
 
 ## Reference

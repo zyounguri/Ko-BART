@@ -1,0 +1,48 @@
+from transformers import AutoModelForSeq2SeqLM,AutoTokenizer
+
+# 모델 학습 후에 가중치 저장할 폴더
+model_path='./saved_model'
+# 모델 초기 가중치 로드할 곳
+model_name = "gogamza/kobart-base-v2"
+# 데이터셋 파일
+data_root='./dataset'
+
+# 내가 학습한 모델 가중치의 유무에 따라 분기 처리
+if os.path.exists(f'{model_path}/pytorch_model.bin'):
+  print("Use Customized Model")
+  model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
+else:
+  print("Use Pretrained Model")
+  model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+# Training Arguments
+args={
+  num_train_epochs=3
+  per_device_train_batch_size=32
+  per_device_eval_batch_size=32
+  
+  # 저장 폴더에 가중치 덮어쓰기 하는 옵션
+  overwrite_output_dir=True
+
+  # 몇 번의 학습 스텝이 지난 후에 평가를 수행할지 결정
+  # 하나의 배치를 처리했을 때가 하나의 스텝이라 볼 수 있음
+  eval_steps=3000 
+
+  # 몇 번의 학습 스텝이 지난 후에 체크포인트를 진행할 지 결정
+  # 중간에 학습이 끊기더라도 다시 진행하기 용이함
+  save_steps=3000
+
+  # LR(Learning Rate) 스케쥴러에서 사용할 스텝 수
+  # Warmup을 통해 LR을 조절해 파라미터 업데이트의 폭을 조절함
+  warmup_steps=300
+
+  # 평가 수행 주기를 Epoch와 Steps중 Steps로 선택
+  evaluation_strategy="steps"
+  
+  # 메모리 관리를 위해 예측값에 대한 손실만 계산하게 하는 옵션
+  prediction_loss_only=True
+  
+  # 학습 중 저장되는 체크포인트의 최대 개수
+  save_total_limit=3
+}
